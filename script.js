@@ -44,7 +44,7 @@
     'nav.contact': 'Contact',
     'lang.switch': 'Переключить на русский',
 
-    'hero.status': 'Open to startups, projects and hackathons',
+    'hero.status': 'Building AI services · Open to projects and teams',
     'hero.hello': "Hi, I'm",
     'hero.name': 'Adilzhan Kadyrgazhy',
     'hero.lead': '9th-grade student from Kazakhstan, focused on Computer Science and AI engineering. I turn ideas into working products with Python and LLMs.',
