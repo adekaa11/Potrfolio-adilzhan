@@ -1,0 +1,464 @@
+<!doctype html>
+<!--
+  Портфолио Адильжана Кадыргажы.
+  Как устроены переводы:
+    • Русский текст пишется прямо здесь, в HTML (это «источник правды»).
+    • Английский — в script.js, в объекте EN. Ключи совпадают с data-i18n.
+    • data-i18n="ключ"            → переводится текст элемента (внутри не должно быть других тегов!)
+    • data-i18n-attr="атрибут:ключ" → переводится атрибут (aria-label, content и т.д.)
+  Всё, что помечено TODO, нужно заменить на свои данные.
+-->
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="meta.title">Адильжан Кадыргажы — CS и AI-инженерия</title>
+  <meta name="description" data-i18n-attr="content:meta.description"
+        content="Портфолио Адильжана Кадыргажы — ученика 9 класса НИШ Астана-Нура. Computer Science и AI-инженерия: проекты на Python, FastAPI и Claude API." />
+  <meta name="author" content="Adilzhan Kadyrgazhy" />
+  <meta name="theme-color" content="#f6f6f3" />
+
+  <!-- Превью ссылки в Telegram / WhatsApp / соцсетях -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Adilzhan Kadyrgazhy — CS & AI Engineering" />
+  <meta property="og:description" content="Student at NIS Astana-Nura. Projects with Python, FastAPI and Claude API." />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!--
+    Анти-мигание темы: выполняется ДО отрисовки страницы,
+    поэтому тёмная тема не «моргает» белым при загрузке.
+  -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js'); // CSS включает анимации появления только при наличии JS
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- Шрифты с поддержкой кириллицы -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!--
+    Спрайт иконок: каждая иконка описана один раз,
+    а дальше подключается так: <svg class="icon"><use href="#i-github"/></svg>
+  -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></symbol>
+  </svg>
+  <!-- Ссылка для навигации с клавиатуры: видна только при фокусе (Tab) -->
+  <a class="skip-link" href="#main" data-i18n="skip">Перейти к содержанию</a>
+
+  <!-- ================= ШАПКА ================= -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="На главную" data-i18n-attr="aria-label:nav.home">~/adilzhan</a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация" data-i18n-attr="aria-label:nav.label">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about" data-i18n="nav.about">Обо мне</a></li>
+          <li><a class="nav__link" href="#projects" data-i18n="nav.projects">Проекты</a></li>
+          <li><a class="nav__link" href="#skills" data-i18n="nav.skills">Навыки</a></li>
+          <li><a class="nav__link" href="#contact" data-i18n="nav.contact">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <!-- Переключатель языка: подпись описывает действие -->
+        <button class="icon-btn lang-btn" id="lang-toggle" type="button"
+                aria-label="Switch to English" data-i18n-attr="aria-label:lang.switch">
+          <span data-lang-label="ru">RU</span><span class="lang-btn__sep" aria-hidden="true">/</span><span data-lang-label="en">EN</span>
+        </button>
+
+        <!-- Переключатель темы: aria-label выставляет script.js -->
+        <button class="icon-btn theme-btn" id="theme-toggle" type="button" aria-label="Сменить тему">
+          <svg class="icon icon-moon" width="18" height="18" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon-sun" width="18" height="18" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+
+        <!-- Бургер-меню: виден только на телефоне -->
+        <button class="icon-btn burger" id="menu-toggle" type="button"
+                aria-expanded="false" aria-controls="nav"
+                aria-label="Меню" data-i18n-attr="aria-label:nav.menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="status reveal">
+            <span class="status__dot" aria-hidden="true"></span>
+            <span data-i18n="hero.status">Открыт к хакатонам и командным проектам</span>
+          </p>
+
+          <h1 class="hero__title reveal" id="hero-title" style="--i:1">
+            <span class="hero__hello" data-i18n="hero.hello">Привет, я</span>
+            <span class="hero__name" data-i18n="hero.name">Адильжан Кадыргажы</span>
+          </h1>
+
+          <p class="hero__lead reveal" style="--i:2" data-i18n="hero.lead">Ученик 9 класса из Казахстана. Изучаю Computer Science и AI-инженерию — и превращаю идеи в работающие продукты на Python и LLM.</p>
+
+          <ul class="hero__meta reveal" style="--i:3">
+            <li data-i18n="hero.meta.school">НИШ Астана-Нура · 9A</li>
+            <li>CS + AI engineering</li>
+            <li data-i18n="hero.meta.country">Казахстан</li>
+          </ul>
+
+          <div class="hero__cta reveal" style="--i:4">
+            <a class="btn btn--primary" href="#projects" data-i18n="hero.cta.projects">Смотреть проекты</a>
+            <a class="btn btn--ghost" href="#contact" data-i18n="hero.cta.contact">Связаться</a>
+          </div>
+        </div>
+
+        <!-- Декоративная «карточка кода» (скринридеры её пропускают) -->
+        <div class="code-card reveal" style="--i:3" aria-hidden="true">
+          <div class="code-card__bar">
+            <span class="code-card__dot"></span><span class="code-card__dot"></span><span class="code-card__dot"></span>
+            <span class="code-card__file">about_me.py</span>
+          </div>
+<pre class="code"><code><span class="c-kw">class</span> <span class="c-fn">Adilzhan</span>:
+    school = <span class="c-str">"NIS Astana-Nura, 9A"</span>
+    focus = [<span class="c-str">"CS"</span>, <span class="c-str">"AI engineering"</span>]
+    stack = [<span class="c-str">"Python"</span>, <span class="c-str">"FastAPI"</span>, <span class="c-str">"Claude"</span>]
+
+    <span class="c-kw">def</span> <span class="c-fn">build</span>(<span class="c-var">self</span>, idea):
+        <span class="c-cm" data-i18n="code.comment"># от идеи до деплоя</span>
+        <span class="c-kw">return</span> ship(idea)<span class="cursor"></span></code></pre>
+        </div>
+      </div>
+
+      <!-- Ключевые факты под первым экраном -->
+      <div class="container">
+        <ul class="highlights reveal" style="--i:5">
+          <li>
+            <strong>4</strong>
+            <span data-i18n="hl.projects">проекта в портфолио</span>
+          </li>
+          <li>
+            <strong data-i18n="hl.daryn.v">2 место</strong>
+            <span data-i18n="hl.daryn">конкурс «Дарын», проект LURA</span>
+          </li>
+          <li>
+            <strong data-i18n="hl.debate.v">Финалист</strong>
+            <span data-i18n="hl.debate">турнир по дебатам, НИШ Семей</span>
+          </li>
+          <li>
+            <strong>TEDx</strong>
+            <span data-i18n="hl.tedx">команда организаторов, Семей</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= ОБО МНЕ ================= -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__label"><span aria-hidden="true">01 /</span> <span data-i18n="about.label">Обо мне</span></p>
+          <h2 class="section__title" id="about-title" data-i18n="about.title">Люблю, когда идея превращается в работающий продукт</h2>
+        </header>
+
+        <div class="about__grid">
+          <div class="about__text reveal">
+            <p data-i18n="about.p1">Меня зовут Адильжан, я учусь в 9A классе НИШ Астана-Нура. Программирую на Python и строю то, чем можно пользоваться: API, Telegram-боты и веб-сервисы.</p>
+            <p data-i18n="about.p2">Главный фокус — AI-инженерия: встраиваю большие языковые модели и компьютерное зрение в реальные приложения. Параллельно участвую в олимпиадах по информатике, чтобы прокачивать алгоритмическое мышление.</p>
+            <p data-i18n="about.p3">Вне кода — дебаты, Model UN и организация мероприятий. Это научило меня ясно аргументировать, работать в команде и доводить дела до конца.</p>
+
+            <!-- Короткие факты. TODO: проверь языки -->
+            <dl class="facts">
+              <div><dt data-i18n="facts.school.k">Школа</dt><dd data-i18n="facts.school.v">НИШ Астана-Нура</dd></div>
+              <div><dt data-i18n="facts.grade.k">Класс</dt><dd>9A</dd></div>
+              <div><dt data-i18n="facts.focus.k">Фокус</dt><dd>CS + AI engineering</dd></div>
+              <div><dt data-i18n="facts.langs.k">Языки</dt><dd>KZ · RU · EN</dd></div>
+            </dl>
+          </div>
+
+          <div class="about__side reveal" style="--i:1">
+            <h3 class="subhead" data-i18n="ach.title">Достижения и опыт</h3>
+            <ul class="timeline">
+              <li class="timeline__item">
+                <span class="tag tag--gold" data-i18n="ach.1.tag">2 место</span>
+                <h4 class="timeline__title" data-i18n="ach.1.title">Проект LURA — конкурс «Дарын»</h4>
+                <p class="timeline__text" data-i18n="ach.1.text">Призовое место на конкурсе научных проектов: от исследования до защиты перед жюри.</p>
+              </li>
+              <li class="timeline__item">
+                <span class="tag tag--accent" data-i18n="ach.2.tag">Финалист</span>
+                <h4 class="timeline__title" data-i18n="ach.2.title">Дебаты — турнир в НИШ г. Семей</h4>
+                <p class="timeline__text" data-i18n="ach.2.text">Дошёл до финала: аргументация, быстрая реакция, работа в команде.</p>
+              </li>
+              <li class="timeline__item">
+                <span class="tag">MUN</span>
+                <h4 class="timeline__title">Model United Nations</h4>
+                <p class="timeline__text" data-i18n="ach.3.text">Участие в конференциях Модели ООН: дипломатия, переговоры, публичные выступления.</p>
+              </li>
+              <li class="timeline__item">
+                <span class="tag">TEDx</span>
+                <h4 class="timeline__title" data-i18n="ach.4.title">TEDx в Семее</h4>
+                <p class="timeline__text" data-i18n="ach.4.text">Участвовал в организации мероприятия: подготовка и координация в команде организаторов.</p>
+              </li>
+              <li class="timeline__item">
+                <span class="tag" data-i18n="ach.5.tag">Олимпиада</span>
+                <h4 class="timeline__title" data-i18n="ach.5.title">Олимпиада по информатике</h4>
+                <p class="timeline__text" data-i18n="ach.5.text">Алгоритмы, структуры данных и решение задач на время.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ПРОЕКТЫ ================= -->
+    <!--
+      Чтобы добавить проект — скопируй <article class="card">...</article>.
+      Ссылки: замени href. Пока href="#", кнопка автоматически серая и некликабельная.
+    -->
+    <section class="section section--alt" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__label"><span aria-hidden="true">02 /</span> <span data-i18n="projects.label">Проекты</span></p>
+          <h2 class="section__title" id="projects-title" data-i18n="projects.title">Избранные проекты</h2>
+          <p class="section__lead" data-i18n="projects.lead">Каждый проект решает конкретную задачу. Код открыт на GitHub.</p>
+        </header>
+
+        <div class="projects">
+          <!-- Проект 1: Атлас кампусов -->
+          <article class="card card--featured reveal">
+            <div class="card__top">
+              <span class="card__index" aria-hidden="true">01</span>
+              <span class="tag tag--accent" data-i18n="p1.badge">Флагманский проект</span>
+            </div>
+            <h3 class="card__title" data-i18n="p1.title">Атлас кампусов</h3>
+            <p class="card__text" data-i18n="p1.text">Сервис для поиска фотографий университетов. Claude Vision проверяет каждый снимок — действительно ли на нём нужный кампус — и автоматически отсеивает нерелевантные и некачественные фото.</p>
+            <ul class="chips" aria-label="Технологии" data-i18n-attr="aria-label:card.stack">
+              <li>Python</li><li>FastAPI</li><li>Claude Vision</li><li>REST API</li>
+            </ul>
+            <div class="card__links">
+              <!-- TODO: ссылка на репозиторий проекта -->
+              <a class="link-btn" href="https://github.com/adekaa11" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--fill" width="16" height="16" aria-hidden="true"><use href="#i-github"/></svg>
+                GitHub
+              </a>
+              <!-- TODO: ссылка на демо -->
+              <a class="link-btn" href="#" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg>
+                <span data-i18n="card.demo">Демо</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Проект 2: Telegram-бот. TODO: опиши, что именно делает бот, и уточни стек -->
+          <article class="card reveal" style="--i:1">
+            <div class="card__top">
+              <span class="card__index" aria-hidden="true">02</span>
+              <span class="tag" data-i18n="p2.badge">Автоматизация</span>
+            </div>
+            <h3 class="card__title" data-i18n="p2.title">Telegram-бот</h3>
+            <p class="card__text" data-i18n="p2.text">Бот на Python, который отвечает пользователям и автоматизирует рутинные задачи прямо в мессенджере.</p>
+            <ul class="chips" aria-label="Технологии" data-i18n-attr="aria-label:card.stack">
+              <li>Python</li><li>Telegram Bot API</li>
+            </ul>
+            <div class="card__links">
+              <a class="link-btn" href="https://github.com/adekaa11" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--fill" width="16" height="16" aria-hidden="true"><use href="#i-github"/></svg>
+                GitHub
+              </a>
+              <!-- TODO: https://t.me/имя_бота -->
+              <a class="link-btn" href="#" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-send"/></svg>
+                <span data-i18n="p2.demo">Открыть бота</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Проект 3: Wastewise. TODO: уточни описание и стек -->
+          <article class="card reveal">
+            <div class="card__top">
+              <span class="card__index" aria-hidden="true">03</span>
+              <span class="tag" data-i18n="p3.badge">Экология</span>
+            </div>
+            <h3 class="card__title">Wastewise</h3>
+            <p class="card__text" data-i18n="p3.text">Проект об осознанном обращении с отходами: помогает разобраться, как сортировать мусор и что можно сдать на переработку.</p>
+            <ul class="chips" aria-label="Технологии" data-i18n-attr="aria-label:card.stack">
+              <li>Python</li><li>Web</li><li>Sustainability</li>
+            </ul>
+            <div class="card__links">
+              <a class="link-btn" href="https://github.com/adekaa11" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--fill" width="16" height="16" aria-hidden="true"><use href="#i-github"/></svg>
+                GitHub
+              </a>
+              <a class="link-btn" href="#" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg>
+                <span data-i18n="card.demo">Демо</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Проект 4: LURA. TODO: опиши, о чём проект -->
+          <article class="card reveal" style="--i:1">
+            <div class="card__top">
+              <span class="card__index" aria-hidden="true">04</span>
+              <span class="tag tag--gold" data-i18n="p4.badge">2 место · «Дарын»</span>
+            </div>
+            <h3 class="card__title">LURA</h3>
+            <p class="card__text" data-i18n="p4.text">Научный проект, занявший 2 место на конкурсе «Дарын». Полный цикл: исследование проблемы, прототип и защита перед жюри.</p>
+            <ul class="chips" aria-label="Технологии" data-i18n-attr="aria-label:card.stack">
+              <li data-i18n="p4.chip1">Исследование</li><li data-i18n="p4.chip2">Прототип</li><li data-i18n="p4.chip3">Публичная защита</li>
+            </ul>
+            <div class="card__links">
+              <a class="link-btn" href="https://github.com/adekaa11" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--fill" width="16" height="16" aria-hidden="true"><use href="#i-github"/></svg>
+                GitHub
+              </a>
+              <a class="link-btn" href="#" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg>
+                <span data-i18n="card.demo">Демо</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= НАВЫКИ ================= -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__label"><span aria-hidden="true">03 /</span> <span data-i18n="skills.label">Навыки</span></p>
+          <h2 class="section__title" id="skills-title" data-i18n="skills.title">Стек и навыки</h2>
+          <p class="section__lead" data-i18n="skills.lead">Инструменты, с которыми я работаю, и навыки, которые прокачиваю вне кода.</p>
+        </header>
+
+        <!-- TODO: добавь/убери навыки под себя -->
+        <div class="skills">
+          <div class="skill reveal">
+            <h3 class="skill__title" data-i18n="sk.prog">Программирование</h3>
+            <ul class="chips">
+              <li>Python</li><li>JavaScript</li><li>HTML / CSS</li><li data-i18n="sk.algo">Алгоритмы</li>
+            </ul>
+          </div>
+          <div class="skill reveal" style="--i:1">
+            <h3 class="skill__title" data-i18n="sk.backend">Backend и API</h3>
+            <ul class="chips">
+              <li>FastAPI</li><li>REST API</li><li>Telegram Bot API</li><li>JSON</li>
+            </ul>
+          </div>
+          <div class="skill reveal" style="--i:2">
+            <h3 class="skill__title" data-i18n="sk.ai">AI-инженерия</h3>
+            <ul class="chips">
+              <li>Claude API</li><li>Claude Vision</li><li>Prompt engineering</li><li data-i18n="sk.llm">LLM-интеграции</li>
+            </ul>
+          </div>
+          <div class="skill reveal">
+            <h3 class="skill__title" data-i18n="sk.tools">Инструменты</h3>
+            <ul class="chips">
+              <li>Git</li><li>GitHub</li><li>VS Code</li><li>Vercel</li>
+            </ul>
+          </div>
+          <div class="skill reveal" style="--i:1">
+            <h3 class="skill__title">Soft skills</h3>
+            <ul class="chips">
+              <li data-i18n="sk.soft.1">Публичные выступления</li><li data-i18n="sk.soft.2">Дебаты и аргументация</li><li data-i18n="sk.soft.3">Командная работа</li><li data-i18n="sk.soft.4">Организация мероприятий</li>
+            </ul>
+          </div>
+          <div class="skill reveal" style="--i:2">
+            <h3 class="skill__title" data-i18n="sk.langs">Языки</h3>
+            <ul class="chips">
+              <li data-i18n="sk.lang.kz">Казахский</li><li data-i18n="sk.lang.ru">Русский</li><li data-i18n="sk.lang.en">Английский — IELTS 5.5</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= КОНТАКТЫ ================= -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact reveal">
+          <div class="contact__main">
+            <p class="section__label"><span aria-hidden="true">04 /</span> <span data-i18n="contact.label">Контакты</span></p>
+            <h2 class="contact__title" id="contact-title" data-i18n="contact.title">Давайте сделаем что-то крутое вместе</h2>
+            <p class="contact__text" data-i18n="contact.text">Открыт к хакатонам, командным проектам, стажировкам и менторству. Пишите — отвечу быстро.</p>
+
+            <!-- TODO: замени you@example.com на свой email (href, текст ссылки и data-copy) -->
+            <div class="email">
+              <a class="email__link" href="mailto:you@example.com">you@example.com</a>
+              <button class="btn btn--ghost btn--sm" type="button" data-copy="you@example.com"
+                      aria-label="Скопировать email" data-i18n-attr="aria-label:contact.copyLabel">
+                <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-copy"/></svg>
+                <span data-i18n="contact.copy">Копировать</span>
+              </button>
+            </div>
+          </div>
+
+          <ul class="socials">
+            <li>
+              <!-- TODO: https://t.me/твой_ник и ник ниже -->
+              <a class="social" href="#" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-send"/></svg>
+                <span class="social__name">Telegram</span>
+                <span class="social__handle">@username</span>
+              </a>
+            </li>
+            <li>
+              <a class="social" href="https://github.com/adekaa11" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--fill" width="20" height="20" aria-hidden="true"><use href="#i-github"/></svg>
+                <span class="social__name">GitHub</span>
+                <span class="social__handle">@adekaa11</span>
+              </a>
+            </li>
+            <li>
+              <!-- TODO: тот же email, что и выше -->
+              <a class="social" href="mailto:you@example.com">
+                <svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-mail"/></svg>
+                <span class="social__name">Email</span>
+                <span class="social__handle">you@example.com</span>
+              </a>
+            </li>
+            <!--
+              Пример ещё одной ссылки (LinkedIn, Instagram и т.д.):
+              <li><a class="social" href="https://linkedin.com/in/..." target="_blank" rel="noopener noreferrer">
+                <span class="social__name">LinkedIn</span><span class="social__handle">in/...</span></a></li>
+            -->
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= ПОДВАЛ ================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> <span data-i18n="footer.name">Адильжан Кадыргажы</span> · <span data-i18n="footer.made">Сделано на чистом HTML, CSS и JS</span></p>
+      <a class="footer__top" href="#top" data-i18n="footer.top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <!-- Всплывающее уведомление (например, «Email скопирован») -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
