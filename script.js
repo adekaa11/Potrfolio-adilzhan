@@ -44,7 +44,7 @@
     'nav.contact': 'Contact',
     'lang.switch': 'Переключить на русский',
 
-    'hero.status': 'Open to hackathons and team projects',
+    'hero.status': 'Open to startups, projects and hackathons',
     'hero.hello': "Hi, I'm",
     'hero.name': 'Adilzhan Kadyrgazhy',
     'hero.lead': '9th-grade student from Kazakhstan, focused on Computer Science and AI engineering. I turn ideas into working products with Python and LLMs.',
@@ -65,7 +65,7 @@
     'about.title': 'I love turning ideas into products that actually work',
     'about.p1': "I'm Adilzhan, a Grade 9A student at NIS Astana-Nura. I code in Python and build things people can actually use: APIs, Telegram bots and web services.",
     'about.p2': 'My main focus is AI engineering — integrating large language models and computer vision into real applications. I also compete in informatics olympiads to sharpen my algorithmic thinking.',
-    'about.p3': 'Outside of code: debate, Model UN and event organizing. They taught me to argue clearly, work in a team and see things through.',
+    'about.p3': 'Outside of code, I’m actively involved in school life and all kinds of events.',
     'facts.school.k': 'School',
     'facts.school.v': 'NIS Astana-Nura',
     'facts.grade.k': 'Grade',
@@ -128,7 +128,7 @@
 
     'contact.label': 'Contact',
     'contact.title': "Let's build something great together",
-    'contact.text': "Open to hackathons, team projects, internships and mentorship. Drop me a message — I'll reply quickly.",
+    'contact.text': "Open to startups, team projects, hackathons and internships. Drop me a message — I'll reply quickly.",
     'contact.copy': 'Copy',
     'contact.copyLabel': 'Copy email',
 
