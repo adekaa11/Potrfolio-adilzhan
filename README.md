@@ -16,21 +16,19 @@ favicon.svg  — иконка вкладки
 vercel.json  — настройки Vercel (заголовки безопасности, чистые URL)
 ```
 
-## Что заменить перед публикацией
+## Контакты на сайте
 
-Все места помечены `TODO` в `index.html`:
-
-- [ ] Email `you@example.com` — заменить все 5 вхождений (поиск по файлу)
-- [ ] Telegram: `href="#"` → `https://t.me/ник`, `@username` → свой ник
-- [ ] Ссылки на репозитории проектов (сейчас ведут на профиль GitHub)
-- [ ] Ссылки на демо: пока `href="#"`, кнопка серая и некликабельная
-- [ ] Описания Telegram-бота, Wastewise и LURA, а также их стек
+- Email: kadyrgazhyadilzhan@gmail.com
+- Telegram: [@crybaby_c](https://t.me/crybaby_c)
+- Instagram: [@_kadyrgazhy_a](https://www.instagram.com/_kadyrgazhy_a)
+- GitHub: [@adekaa11](https://github.com/adekaa11)
 
 ## Как редактировать
 
 - **Текст на русском** — прямо в `index.html`.
 - **Текст на английском** — в `script.js`, объект `EN`; ключ = `data-i18n` из HTML.
 - **Новый проект** — скопировать блок `<article class="card">…</article>`, задать новые ключи `data-i18n` и добавить их в `EN`.
+- **Ссылка в карточке проекта** — добавить внутрь карточки блок `<div class="card__links">` с кнопкой `<a class="link-btn">` (пример — в карточке Wastewise).
 - **Цвета** — переменные в начале `styles.css` (`:root` — светлая тема, `[data-theme="dark"]` — тёмная).
 
 ## Локальный запуск
@@ -42,7 +40,7 @@ python3 -m http.server 8080
 
 ## Деплой на Vercel в 3 шага
 
-1. **Код на GitHub.** Репозиторий `adekaa11/Potrfolio-adilzhan` уже содержит файлы. Если нужна ветка `main`, создай её из текущей ветки и сделай веткой по умолчанию (GitHub → Settings → Branches).
+1. **Код на GitHub.** Ветка `main` репозитория `adekaa11/Potrfolio-adilzhan` содержит сайт. Сделай её веткой по умолчанию: GitHub → Settings → General → Default branch.
 2. **Импорт в Vercel.** [vercel.com/new](https://vercel.com/new) → войти через GitHub → **Import** у репозитория. Framework Preset: **Other**, Build Command — пусто, Output Directory — пусто (корень).
 3. **Deploy.** Через ~30 секунд сайт доступен на `*.vercel.app`. Дальше каждый `git push` в основную ветку обновляет сайт автоматически. Свой домен: Project → Settings → Domains.
 

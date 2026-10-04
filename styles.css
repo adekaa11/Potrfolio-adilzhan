@@ -892,6 +892,18 @@ svg {
   background: var(--accent-soft);
 }
 
+/* Пометка вместо кнопок (например, «Приватный репозиторий») */
+.card__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 /* Ссылки-заглушки (href="#"): script.js добавляет этот класс */
 .is-disabled {
   opacity: 0.45;
@@ -936,6 +948,12 @@ svg {
     var(--surface);
 }
 
+/* min-width: 0 не даёт длинным нику/email раздвинуть колонку шире карточки */
+.contact > *,
+.socials > li {
+  min-width: 0;
+}
+
 .contact__title {
   font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3.2rem);
   font-weight: 800;
@@ -958,7 +976,7 @@ svg {
 }
 
 .email__link {
-  font-size: clamp(1.1rem, 1rem + 1vw, 1.5rem);
+  font-size: 0.95rem; /* на телефоне адрес помещается в одну строку */
   font-weight: 700;
   text-decoration: underline;
   text-decoration-color: var(--accent);
@@ -1003,12 +1021,15 @@ svg {
 }
 
 .social__handle {
+  min-width: 0;
   margin-left: auto;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--muted);
-  overflow-wrap: anywhere;
-  text-align: right;
+  /* длинный ник обрезается многоточием, а не переносится на 2 строки */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -1114,6 +1135,10 @@ svg {
 
   .contact {
     padding: 48px;
+  }
+
+  .email__link {
+    font-size: clamp(1.2rem, 0.9rem + 1vw, 1.5rem);
   }
 
   .hero__cta .btn {
