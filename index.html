@@ -13,14 +13,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-i18n="meta.title">Адильжан Кадыргажы — CS и AI-инженерия</title>
   <meta name="description" data-i18n-attr="content:meta.description"
-        content="Портфолио Адильжана Кадыргажы — ученика 9 класса НИШ Астана-Нура. Computer Science и AI-инженерия: проекты на Python, FastAPI и Claude API." />
+        content="Портфолио Адильжана Кадыргажы — ученика 9 класса НИШ Астана-Нура. Computer Science и AI-инженерия: проекты на Python, FastAPI и компьютерном зрении." />
   <meta name="author" content="Adilzhan Kadyrgazhy" />
   <meta name="theme-color" content="#f6f6f3" />
 
   <!-- Превью ссылки в Telegram / WhatsApp / соцсетях -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Adilzhan Kadyrgazhy — CS & AI Engineering" />
-  <meta property="og:description" content="Student at NIS Astana-Nura. Projects with Python, FastAPI and Claude API." />
+  <meta property="og:description" content="Student at NIS Astana-Nura. Projects with Python, FastAPI and computer vision." />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
@@ -145,7 +145,7 @@
 <pre class="code"><code><span class="c-kw">class</span> <span class="c-fn">Adilzhan</span>:
     school = <span class="c-str">"NIS Astana-Nura, 9A"</span>
     focus = [<span class="c-str">"CS"</span>, <span class="c-str">"AI engineering"</span>]
-    stack = [<span class="c-str">"Python"</span>, <span class="c-str">"FastAPI"</span>, <span class="c-str">"Claude"</span>]
+    stack = [<span class="c-str">"Python"</span>, <span class="c-str">"FastAPI"</span>, <span class="c-str">"YOLO"</span>]
 
     <span class="c-kw">def</span> <span class="c-fn">build</span>(<span class="c-var">self</span>, idea):
         <span class="c-cm" data-i18n="code.comment"># от идеи до деплоя</span>
@@ -205,7 +205,7 @@
               <li class="timeline__item">
                 <span class="tag tag--gold" data-i18n="ach.1.tag">2 место</span>
                 <h4 class="timeline__title" data-i18n="ach.1.title">Проект LURA — конкурс «Дарын»</h4>
-                <p class="timeline__text" data-i18n="ach.1.text">Призовое место на конкурсе научных проектов: от исследования до защиты перед жюри.</p>
+                <p class="timeline__text" data-i18n="ach.1.text">Призёр конкурса научных проектов с интеллектуальной системой мониторинга и анализа бизнеса.</p>
               </li>
               <li class="timeline__item">
                 <span class="tag tag--accent" data-i18n="ach.2.tag">Финалист</span>
@@ -243,7 +243,7 @@
         <header class="section__head reveal">
           <p class="section__label"><span aria-hidden="true">02 /</span> <span data-i18n="projects.label">Проекты</span></p>
           <h2 class="section__title" id="projects-title" data-i18n="projects.title">Избранные проекты</h2>
-          <p class="section__lead" data-i18n="projects.lead">Каждый проект решает конкретную задачу — от сортировки мусора до AI-проверки фотографий.</p>
+          <p class="section__lead" data-i18n="projects.lead">Каждый проект решает конкретную задачу — от сортировки мусора до мониторинга бизнеса.</p>
         </header>
 
         <div class="projects">
@@ -254,9 +254,9 @@
               <span class="tag tag--accent" data-i18n="p1.badge">Флагманский проект</span>
             </div>
             <h3 class="card__title" data-i18n="p1.title">Атлас кампусов</h3>
-            <p class="card__text" data-i18n="p1.text">Сервис на FastAPI для фотографий университетов: находит снимки кампусов, Claude Vision проверяет, что на фото действительно нужный вуз, а дубли и похожие кадры удаляются автоматически.</p>
+            <p class="card__text" data-i18n="p1.text">Сервис на FastAPI для фотографий университетов: собирает снимки кампусов, AI-модель (CLIP/SigLIP) раскладывает их по категориям — кампус, лаборатории, спорт, общежития — и отсеивает лишнее, а дубли удаляются по perceptual hash. Сделан на LOCUS Startup Hackathon 2026.</p>
             <ul class="chips" aria-label="Технологии" data-i18n-attr="aria-label:card.stack">
-              <li>Python</li><li>FastAPI</li><li>Claude Vision</li><li>REST API</li>
+              <li>Python</li><li>FastAPI</li><li>CLIP / SigLIP</li><li>Hugging Face</li><li>imagehash</li>
             </ul>
             <div class="card__links">
               <a class="link-btn" href="https://university-profile-five.vercel.app" target="_blank" rel="noopener noreferrer">
@@ -320,9 +320,9 @@
               <span class="tag tag--gold" data-i18n="p4.badge">2 место · «Дарын»</span>
             </div>
             <h3 class="card__title">LURA</h3>
-            <p class="card__text" data-i18n="p4.text">Научный проект, занявший 2 место на конкурсе «Дарын». Полный цикл: исследование проблемы, прототип и защита перед жюри.</p>
-            <ul class="chips" aria-label="Технологии" data-i18n-attr="aria-label:card.stack">
-              <li data-i18n="p4.chip1">Исследование</li><li data-i18n="p4.chip2">Прототип</li><li data-i18n="p4.chip3">Публичная защита</li>
+            <p class="card__text" data-i18n="p4.text">Интеллектуальная система мониторинга для малого и среднего бизнеса. Отслеживает отзывы клиентов, конкурентов (только по открытым данным) и изменения рынка, сравнивает новые события с прошлыми и выделяет важные сигналы: повторяющиеся жалобы, новые запросы, тренды. Ведёт историю бизнеса — видно, как решения повлияли на ситуацию.</p>
+            <ul class="chips" aria-label="Возможности" data-i18n-attr="aria-label:card.features">
+              <li data-i18n="p4.chip1">Анализ отзывов</li><li data-i18n="p4.chip2">Мониторинг конкурентов</li><li data-i18n="p4.chip3">Рыночные тренды</li><li data-i18n="p4.chip4">История бизнеса</li>
             </ul>
             <div class="card__links">
               <a class="link-btn" href="https://web-kuritsamal.vercel.app/studio" target="_blank" rel="noopener noreferrer">
@@ -360,7 +360,7 @@
           <div class="skill reveal" style="--i:2">
             <h3 class="skill__title" data-i18n="sk.ai">AI-инженерия</h3>
             <ul class="chips">
-              <li>Claude Vision</li><li>YOLO (Ultralytics)</li><li>OpenAI API</li><li>Prompt engineering</li>
+              <li>YOLO (Ultralytics)</li><li>CLIP / SigLIP</li><li>OpenAI API</li><li>Prompt engineering</li>
             </ul>
           </div>
           <div class="skill reveal">
